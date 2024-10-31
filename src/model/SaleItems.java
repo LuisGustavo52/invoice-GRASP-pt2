@@ -1,15 +1,22 @@
 package model;
 
 public class SaleItems {
-	private Product products;
+	private Product product;
 	private int quantity;
 	
-	public Product getProducts() {
-		return products;
+	public SaleItems(String productName, int quantity) {
+		this.quantity = quantity;
+		this.product = new Product();
+		this.product.setDescription(productName);
+		this.product.setPrice(0.0);
 	}
 
-	public void setProducts(Product products) {
-		this.products = products;
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product products) {
+		this.product = products;
 	}
 
 	public int getQuantity() {
@@ -21,12 +28,12 @@ public class SaleItems {
 	}
 
 	public double getSubTotalPrice(){
-		return quantity * products.getPrice();
+		return quantity * product.getPrice();
 	}
 	@Override
 	public String toString() {
 		String intemStr = String.format("%s %d %.2f",
-				this.getProducts().getDescription(),
+				this.getProduct().getDescription(),
 				this.getQuantity(),
 				this.getSubTotalPrice());
 		

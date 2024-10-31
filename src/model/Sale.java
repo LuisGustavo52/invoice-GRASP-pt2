@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sale {
-	private List<SaleItems> items;
+	private List<SaleItems> items = new ArrayList<>();
 	
-	public void addSaleItem(SaleItems saleItems) {
-		items.add(saleItems);
+	public void addItem(String name, int quantity) {
+		SaleItemsFactory newSaleItems = new SaleItemsFactory();
+		items.add(newSaleItems.createSaleItems(name, quantity));
 	}
 	
-	public List<SaleItems> getItems(){
-		return new ArrayList<SaleItems>(items);
+	public String[] getItems(){
+		String[] stringItems = new String[items.size()];
+		int i = 0;
+		for (SaleItems listItems : items) {
+			stringItems[i] = listItems.toString();
+			i++;
+		}
+		
+		return stringItems;
 	}
 	
 	public Double getTotalPrice() {
